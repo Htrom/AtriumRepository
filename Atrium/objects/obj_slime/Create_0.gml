@@ -9,3 +9,4 @@ ability1Cooldown = 0.5;
 ability1Time = 0;
 hp = 100;
 activated = false;
+moveSprite = spr_slime_move;

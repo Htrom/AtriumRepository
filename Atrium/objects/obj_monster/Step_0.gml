@@ -5,13 +5,19 @@ if(nearestPlayer.x > x+65)
 {
 	hsp = moveSpeed;
 	ability1 = 0;
+	sprite_index = moveSprite;
+	image_xscale = 1;
+	
 }else if(nearestPlayer.x < x+35)
 {
 	hsp = -moveSpeed;
 	ability1 = 0;
+	sprite_index = moveSprite;
+	image_xscale = -1;
 }else
 {
 	hsp = 0;
+	sprite_index = moveSprite;
 	
 }
 
