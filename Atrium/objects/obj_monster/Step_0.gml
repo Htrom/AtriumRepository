@@ -3,20 +3,33 @@
 nearestPlayer = instance_nearest(x-64,y,obj_player);
 if(nearestPlayer.x > x+65)
 {
-	hsp = moveSpeed;
+	if(hsp<moveSpeed)
+	{
+		hsp += hspAccel;
+	}else
+	{
+		hsp = moveSpeed;
+	}
 	ability1 = 0;
 	sprite_index = moveSprite;
 	image_xscale = 1;
 	
 }else if(nearestPlayer.x < x+35)
 {
-	hsp = -moveSpeed;
+	if(hsp>-moveSpeed)
+	{
+		hsp -= hspAccel;
+	}
+	else
+	{
+		hsp = -moveSpeed;
+	}
 	ability1 = 0;
 	sprite_index = moveSprite;
 	image_xscale = -1;
 }else
 {
-	hsp = 0;
+//	hsp = 0;
 	sprite_index = moveSprite;
 	
 }
@@ -48,6 +61,8 @@ if(place_meeting(x,y + vsp,obj_wall))
 	vsp = 0;
 	
 }
+
+hit = 0;
 
 x += hsp;
 y += vsp;
