@@ -60,6 +60,14 @@ switch (state)
 	{
 		state = "ability1";	
 	}
+	else if(key_climb || key_climb_down)
+	{
+		if(place_meeting(x,y+1,obj_ladder_air))
+		{
+		
+			state = "climb";
+		}
+	}
 	else if(key_right)
 	{
 		if(place_meeting(x,y+1,obj_wall))
@@ -76,14 +84,7 @@ switch (state)
 		}
 		image_xscale = -1;
 	}
-	else if(key_climb || key_climb_down)
-	{
-		if(place_meeting(x,y+1,obj_ladder_air))
-		{
-		
-			state = "climb";
-		}
-	}
+	
 	else
 	{
 		if(place_meeting(x,y+1,obj_wall))
@@ -92,7 +93,7 @@ switch (state)
 		}
 	}
 	
-	if(key_jump){
+	if(key_jump && !place_meeting(x,y-10,obj_wall)){
 		state = "jump"
 	}
 	
@@ -131,8 +132,9 @@ switch (state)
 		
 	}
 	else if(key_jump && !place_meeting(x,y+1,obj_wall)){
-		vsp = -jumpSpeed;
-		state = "ground";
+		vsp = key_jump * -jumpSpeed;
+		sprite_set_speed(moveSprite,15,0)
+		state = "jump";
 	}
 	else
 	{
@@ -215,4 +217,3 @@ if(y > 2050)
 	y = fally;
 	x = fallx;
 }
-
