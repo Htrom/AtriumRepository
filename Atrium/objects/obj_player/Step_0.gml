@@ -74,6 +74,23 @@ else if(key_x)
 {
 
 	sprite_index = ability1Sprite;
+	if(image_index >=ability1BeginFrame && image_index <=ability1EndFrame)
+	{
+		with(instance_create_depth(x,y,0,hitbox))
+		{
+			image_xscale = other.image_xscale;
+			with(instance_place(x,y,obj_monster))
+			{
+				if(hit == 0)
+				{
+					hit = 1;
+					vsp = -10;
+					hsp = sign(x-other.x)*4;
+					image_xscale = sign(hsp);
+				}
+			}
+		}
+	}
 	
 }
 else

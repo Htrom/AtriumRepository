@@ -207,6 +207,14 @@
             }
         },
         {
+            "Key": "68250f17-186e-43b7-aecf-326ab07aa655",
+            "Value": {
+                "id": "fe4138e0-9de8-4c0b-b8a4-45634e04efbd",
+                "resourcePath": "sprites\\spr_ganon_attack_hitbox\\spr_ganon_attack_hitbox.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "69a81315-a10f-4076-8458-f4f47b4d9778",
             "Value": {
                 "id": "1e58ae67-3b4e-4bd7-87dd-6d62be2706ae",
@@ -396,6 +404,14 @@
                 "id": "caab4cd1-dbb9-4c44-a78e-9bac5a0dcd9e",
                 "resourcePath": "views\\a464e518-285f-418d-8d6a-fc59b489ba21.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "a639eb7d-6655-440a-8e99-81d3ee562057",
+            "Value": {
+                "id": "3d742be1-1218-4fd0-9c06-a4cd92ecb353",
+                "resourcePath": "objects\\obj_ganon_attack_hitbox\\obj_ganon_attack_hitbox.yy",
+                "resourceType": "GMObject"
             }
         },
         {

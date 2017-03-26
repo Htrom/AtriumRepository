@@ -3,9 +3,9 @@
 if(!activated)
 {
 	
-	hit = instance_place(x,y,obj_player);
-	hit.x-=5;
-	hit.hp-=damage;
+	hit1 = instance_place(x,y,obj_player);
+	hit1.x-=5;
+//	hit1.hp-=damage;
 	
 	activated = true;
 	ability1Time = 0;

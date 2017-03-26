@@ -12,6 +12,11 @@ critChance = 0;
 hsp = 0;
 vsp = 0;
 
+//hitbox
+hitbox = obj_ganon_attack_hitbox;
+ability1BeginFrame = 8;
+ability1EndFrame = 12;
+
 //sprites
 moveSprite = spr_ganon_move;
 idleSprite = spr_ganon_idle;
