@@ -68,7 +68,7 @@ else
 
 if(state == "ground")
 {
-	if(!place_meeting(x+sign(hsp)*30,y + 2,obj_wall) )
+	if(!place_meeting(x+sign(hsp)*30,y + 2,obj_wall) && hit == 0)
 	{
 
 		hsp = 0;
@@ -80,7 +80,8 @@ if(attackImmuneCounter > attackImmuneTime)
 {
 	hit = 0;
 }
-if(hit == 1){
+if(hit == 1)
+{
 	attackImmuneCounter++;
 }
 
