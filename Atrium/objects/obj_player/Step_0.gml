@@ -104,6 +104,8 @@ switch (state)
 		{
 		
 			vsp = -4;
+			sprite_set_speed(moveSprite,15,0)
+			sprite_index = moveSprite;
 		}else
 		{
 			state = "ground";
@@ -115,6 +117,10 @@ switch (state)
 		{
 		
 			vsp = 4;
+			
+			sprite_set_speed(moveSprite,-15,0)
+			sprite_index = moveSprite;
+			
 		}else
 		{
 			state = "ground";
@@ -128,6 +134,8 @@ switch (state)
 	else
 	{
 		vsp = 0;
+		sprite_set_speed(moveSprite,0,0)
+			sprite_index = moveSprite;
 	}
 	hsp = 0;
 	break;
@@ -191,7 +199,7 @@ switch (state)
 		break;
 }
 
-if(!place_meeting(x,y+1,obj_wall) && state!="ability1")
+if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state != "climb")
 {
 	sprite_index = jumpingSprite;	
 }

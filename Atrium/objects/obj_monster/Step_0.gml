@@ -58,7 +58,7 @@ if(place_meeting(x,y + vsp,obj_wall))
 
 
 
-if(place_meeting(x,y+sign(vsp),obj_wall)){
+if(place_meeting(x,y+1,obj_wall)){
 	state = "ground";
 }
 else
@@ -68,7 +68,7 @@ else
 
 if(state == "ground")
 {
-	if(!place_meeting(x+hsp*10,y + 1,obj_wall) )
+	if(!place_meeting(x+sign(hsp)*30,y + 2,obj_wall) )
 	{
 
 		hsp = 0;

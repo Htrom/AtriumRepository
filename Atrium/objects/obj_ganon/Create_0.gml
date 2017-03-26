@@ -26,3 +26,4 @@ moveSprite = spr_ganon_move;
 idleSprite = spr_ganon_idle;
 jumpingSprite = spr_ganon_jumping;
 ability1Sprite = spr_ganon_attack;
+climbingSprite = spr_ganon_jumping;
