@@ -6,9 +6,6 @@ if(nearestPlayer.x > x+65)
 	if(hsp<moveSpeed)
 	{
 		hsp += hspAccel;
-	}else
-	{
-		hsp = moveSpeed;
 	}
 	ability1 = 0;
 	sprite_index = moveSprite;
@@ -20,10 +17,7 @@ if(nearestPlayer.x > x+65)
 	{
 		hsp -= hspAccel;
 	}
-	else
-	{
-		hsp = -moveSpeed;
-	}
+
 	ability1 = 0;
 	sprite_index = moveSprite;
 	image_xscale = -1;
@@ -64,7 +58,7 @@ if(place_meeting(x,y + vsp,obj_wall))
 
 
 
-if(vsp == 0){
+if(place_meeting(x,y+sign(vsp),obj_wall)){
 	state = "ground";
 }
 else
@@ -81,7 +75,14 @@ if(state == "ground")
 
 	}
 }
-hit = 0;
+
+if(attackImmuneCounter > attackImmuneTime)
+{
+	hit = 0;
+}
+if(hit == 1){
+	attackImmuneCounter++;
+}
 
 x += hsp;
 y += vsp;

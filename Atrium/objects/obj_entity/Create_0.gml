@@ -17,6 +17,7 @@ var ability1State;
 var ability1Time;
 var ability1BeginFrame;
 var ability1EndFrame;
+var ability1KnockBack;
 var hitbox;
 var hit;
 var state;

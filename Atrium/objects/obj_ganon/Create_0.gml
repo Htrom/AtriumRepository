@@ -16,8 +16,9 @@ state = "ground";
 //hitbox
 hitbox = obj_ganon_attack_hitbox;
 ability1BeginFrame = 8;
-ability1EndFrame = 12;
-ability1Damage = 35;
+ability1EndFrame = 9;
+ability1Damage = 50;
+ability1KnockBack = 10;
 
 
 //sprites
