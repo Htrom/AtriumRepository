@@ -1,7 +1,7 @@
 
 
 nearestPlayer = instance_nearest(x,y,obj_player);
-if(nearestPlayer.x > x+65)
+if(nearestPlayer.x > x+15)
 {
 	if(hsp<moveSpeed)
 	{
@@ -11,7 +11,7 @@ if(nearestPlayer.x > x+65)
 	sprite_index = moveSprite;
 	image_xscale = 1;
 	
-}else if(nearestPlayer.x < x+35)
+}else if(nearestPlayer.x < x)
 {
 	if(hsp>-moveSpeed)
 	{

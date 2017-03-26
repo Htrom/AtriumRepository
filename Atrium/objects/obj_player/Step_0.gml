@@ -58,13 +58,23 @@ switch (state)
 {
 	
 	case "ground":
-	if(key_z)
+	
+	if(key_jump && !place_meeting(x,y-10,obj_wall)){
+		
+		state = "jump"
+		sprite_index = jumpingSprite;
+	}
+	else if(key_z)
 	{
 		state = "ability1";	
+		sprite_index = ability1Sprite;
+		image_index = 0;
 	}
 	else if(key_x)
 	{
 		state = "ability2";
+		sprite_index = ability2Sprite;
+		image_index = 0;
 	}
 	else if(key_climb || key_climb_down)
 	{
@@ -91,6 +101,7 @@ switch (state)
 		image_xscale = -1;
 	}
 	
+	
 	else
 	{
 		if(place_meeting(x,y+1,obj_wall))
@@ -99,13 +110,8 @@ switch (state)
 		}
 	}
 	
-	if(key_jump && !place_meeting(x,y-10,obj_wall)){
-		state = "jump"
-	}
-	
-	
-	
 	break;
+	
 	
 	case "climb":
 	if(key_climb)
@@ -138,6 +144,7 @@ switch (state)
 		
 	}
 	else if(key_jump && !place_meeting(x,y+1,obj_wall)){
+		
 		vsp = key_jump * -jumpSpeed;
 		sprite_set_speed(moveSprite,15,0)
 		state = "jump";
@@ -194,7 +201,7 @@ switch (state)
 				}
 			}
 		}
-		if(image_index > image_number-3)
+		if(image_index > image_number-2)
 		{
 			state = "ground";
 			
@@ -240,7 +247,7 @@ switch (state)
 							{
 								hit = 1;
 								attackImmuneCounter = 0;
-								attackImmuneTime = (other.ability2EndFrame - other.ability2BeginFrame); 
+								attackImmuneTime = (other.ability2EndFrame - other.ability2BeginFrame)+1; 
 								vsp = -other.ability2VerKnockBack;
 								hsp = sign(x-other.x)*other.ability2HorKnockBack;
 								hp -= other.ability2Damage;
@@ -255,7 +262,7 @@ switch (state)
 				}
 			}
 		}
-		if(image_index > image_number-3)
+		if(image_index > image_number-2)
 		{
 			state = "ground";
 			if(image_xscale = 1)
@@ -271,8 +278,10 @@ switch (state)
 		break;
 		
 		case "jump":
+			
 			if(place_meeting(x,y+1,obj_wall))
 			{
+				y -= 1;
 				vsp = key_jump * -jumpSpeed;	
 			}else{
 				state = "ground";

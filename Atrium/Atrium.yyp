@@ -119,6 +119,14 @@
             }
         },
         {
+            "Key": "3497cf31-1151-405b-b8e3-a736e2559245",
+            "Value": {
+                "id": "50379b51-e861-4692-bc4f-b957526b50db",
+                "resourcePath": "sprites\\spr_bckgrd_ror\\spr_bckgrd_ror.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "3a86b86e-71c4-4ebb-bb47-4083f91a50df",
             "Value": {
                 "id": "08b4354d-f7b3-4e9e-bc57-e9d9ab17a902",
