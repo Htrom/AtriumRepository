@@ -11,6 +11,7 @@ evadeChange = 0;
 critChance = 0;
 hsp = 0;
 vsp = 0;
+state = "ground";
 
 //hitbox
 hitbox = obj_ganon_attack_hitbox;

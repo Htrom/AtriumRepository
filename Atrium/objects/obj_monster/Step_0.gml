@@ -62,6 +62,25 @@ if(place_meeting(x,y + vsp,obj_wall))
 	
 }
 
+
+
+if(vsp == 0){
+	state = "ground";
+}
+else
+{
+	state = "falling";
+}
+
+if(state == "ground")
+{
+	if(!place_meeting(x+hsp*10,y + 1,obj_wall) )
+	{
+
+		hsp = 0;
+
+	}
+}
 hit = 0;
 
 x += hsp;

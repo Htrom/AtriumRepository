@@ -2,6 +2,8 @@
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
 key_jump = keyboard_check(vk_space);
+key_climb = keyboard_check(vk_up);
+key_climb_down = keyboard_check(vk_down);
 key_x = keyboard_check(ord("X"));
 xpos = x;
 //React to input
@@ -49,62 +51,125 @@ if(place_meeting(x,y + vsp,obj_wall))
 	
 }
 
-x += hsp;
-y += vsp;
 
 
-
-if(key_right)
+switch (state)
 {
-	if(place_meeting(x,y+1,obj_wall))
+	
+	case "ground":
+	if(key_right)
 	{
-		sprite_index = moveSprite;
-	}
-	image_xscale = 1;
-}
-else if(key_left)
-{
-	if(place_meeting(x,y+1,obj_wall))
-	{
-		sprite_index = moveSprite;
-	}
-	image_xscale = -1;
-}
-else if(key_x)
-{
-
-	sprite_index = ability1Sprite;
-	if(image_index >=ability1BeginFrame && image_index <=ability1EndFrame)
-	{
-		with(instance_create_depth(x,y,0,hitbox))
+		if(place_meeting(x,y+1,obj_wall))
 		{
-			image_xscale = other.image_xscale;
-			with(instance_place(x,y,obj_monster))
+			sprite_index = moveSprite;
+		}
+		image_xscale = 1;
+	}
+	else if(key_left)
+	{
+		if(place_meeting(x,y+1,obj_wall))
+		{
+			sprite_index = moveSprite;
+		}
+		image_xscale = -1;
+	}
+	else if(key_climb || key_climb_down)
+	{
+		if(place_meeting(x,y+1,obj_ladder_air))
+		{
+		
+			state = "climb";
+		}
+	}
+	else if(key_x)
+	{
+
+		sprite_index = ability1Sprite;
+		if(image_index >=ability1BeginFrame && image_index <=ability1EndFrame)
+		{
+			
+			with(instance_create_depth(x,y,0,hitbox))
 			{
-				if(hit == 0)
+				image_xscale = other.image_xscale;
+				
+				
+				l = instance_place_list(x,y,obj_monster)
+				if(!ds_list_empty(l))
 				{
-					hit = 1;
-					vsp = -6;
-					hsp = sign(x-other.x)*6;
-					hp -= other.ability1Damage;
-					image_xscale = sign(hsp);
+					for(var i = 0; i < ds_list_size(l); i++)
+					{
+						with(ds_list_find_value(l,i))
+						{
+					
+							if(hit == 0)
+							{
+								hit = 1;
+								vsp = -6;
+								hsp = sign(x-other.x)*6;
+								hp -= other.ability1Damage;
+								image_xscale = sign(hsp);
+								if(hp < 0)
+								{
+									i--;
+								}							
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-	
-}
-else
-{
-	if(place_meeting(x,y+1,obj_wall))
+	else
 	{
-		sprite_index = idleSprite;
+		if(place_meeting(x,y+1,obj_wall))
+		{
+			sprite_index = idleSprite;
+		}
 	}
+	break;
+	
+	case "climb":
+	if(key_climb)
+	{
+		if(place_meeting(x,y+1,obj_ladder_air))
+		{
+		
+			vsp = -4;
+		}else
+		{
+			state = "ground";
+		}
+	}
+	else if(key_climb_down)
+	{
+		if(place_meeting(x,y+1,obj_ladder_air))
+		{
+		
+			vsp = 4;
+		}else
+		{
+			state = "ground";
+		}
+		
+	}
+	else if(key_jump && !place_meeting(x,y+1,obj_wall)){
+		vsp = -jumpSpeed;
+		state = "ground";
+	}
+	else
+	{
+		vsp = 0;
+	}
+	hsp = 0;
+	break;
 }
 
 if(!place_meeting(x,y+1,obj_wall) && !key_x)
 {
 	sprite_index = jumpingSprite;	
 }
+
+x += hsp;
+y += vsp;
 
 

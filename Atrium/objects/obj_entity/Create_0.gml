@@ -19,6 +19,7 @@ var ability1BeginFrame;
 var ability1EndFrame;
 var hitbox;
 var hit;
+var state;
 
 vsp = 0;
 hsp = 0;
