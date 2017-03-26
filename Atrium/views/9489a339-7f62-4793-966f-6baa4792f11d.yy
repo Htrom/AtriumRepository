@@ -9,7 +9,10 @@
         "84c3334d-7630-4272-b1ec-3d3d35fbd08f",
         "96c0798b-745e-4f90-bd10-3201d6df754f",
         "01751fbd-0d08-4b94-b0e9-42fa02163132",
-        "68250f17-186e-43b7-aecf-326ab07aa655"
+        "68250f17-186e-43b7-aecf-326ab07aa655",
+        "490ae364-b878-403c-826c-4ffb1494ed11",
+        "95896cf1-5cc8-4b9c-8d8d-8706aa35e277",
+        "bb683481-2aeb-4f47-a6fb-036c6e6f6599"
     ],
     "filterType": "GMSprite",
     "folderName": "ganon",

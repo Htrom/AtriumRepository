@@ -4,7 +4,9 @@ key_left = keyboard_check(vk_left);
 key_jump = keyboard_check(vk_space);
 key_climb = keyboard_check(vk_up);
 key_climb_down = keyboard_check(vk_down);
+key_z = keyboard_check(ord("Z"));
 key_x = keyboard_check(ord("X"));
+
 xpos = x;
 
 
@@ -56,9 +58,13 @@ switch (state)
 {
 	
 	case "ground":
-	if(key_x)
+	if(key_z)
 	{
 		state = "ability1";	
+	}
+	else if(key_x)
+	{
+		state = "ability2";
 	}
 	else if(key_climb || key_climb_down)
 	{
@@ -154,12 +160,13 @@ switch (state)
 		if(image_index >= ability1BeginFrame && image_index <=ability1EndFrame)
 		{
 			
-			with(instance_create_depth(x,y,0,hitbox))
+			with(instance_create_depth(x,y,0,ability1Hitbox))
 			{
 				ability1EndFrame = other.ability1EndFrame;
 				ability1BeginFrame = other.ability1BeginFrame;
 				ability1Damage = other.ability1Damage;
-				ability1KnockBack = other.ability1KnockBack;
+				ability1VerKnockBack = other.ability1VerKnockBack;
+				ability1HorKnockBack = other.ability1HorKnockBack;
 				image_xscale = other.image_xscale;	
 				l = instance_place_list(x,y,obj_monster)
 				if(!ds_list_empty(l))
@@ -173,8 +180,8 @@ switch (state)
 								hit = 1;
 								attackImmuneCounter = 0;
 								attackImmuneTime = (other.ability1EndFrame - other.ability1BeginFrame); 
-								vsp = -10;
-								hsp = sign(x-other.x)*other.ability1KnockBack;
+								vsp = -other.ability1VerKnockBack;
+								hsp = sign(x-other.x)*other.ability1HorKnockBack;
 								hp -= other.ability1Damage;
 								image_xscale = sign(hsp);
 								if(hp < 0)
@@ -190,6 +197,16 @@ switch (state)
 		if(image_index > image_number-3)
 		{
 			state = "ground";
+			
+			if(image_xscale = 1)
+			{
+				x += ability1XChange;
+			}
+			else
+			{
+				x -= ability1XChange;
+			}
+			y += ability1YChange;
 		}
 		break;
 		
@@ -202,12 +219,15 @@ switch (state)
 		if(image_index >= ability2BeginFrame && image_index <=ability2EndFrame)
 		{
 			
-			with(instance_create_depth(x,y,0,hitbox))
+			with(instance_create_depth(x,y,0,ability2Hitbox))
 			{
 				ability2EndFrame = other.ability2EndFrame;
 				ability2BeginFrame = other.ability2BeginFrame;
 				ability2Damage = other.ability2Damage;
-				ability2KnockBack = other.ability2KnockBack;
+				ability2VerKnockBack = other.ability2VerKnockBack;
+				ability2HorKnockBack = other.ability2HorKnockBack;
+				
+				
 				image_xscale = other.image_xscale;	
 				l = instance_place_list(x,y,obj_monster)
 				if(!ds_list_empty(l))
@@ -221,8 +241,8 @@ switch (state)
 								hit = 1;
 								attackImmuneCounter = 0;
 								attackImmuneTime = (other.ability2EndFrame - other.ability2BeginFrame); 
-								vsp = -10;
-								hsp = sign(x-other.x)*other.ability2KnockBack;
+								vsp = -other.ability2VerKnockBack;
+								hsp = sign(x-other.x)*other.ability2HorKnockBack;
 								hp -= other.ability2Damage;
 								image_xscale = sign(hsp);
 								if(hp < 0)
@@ -238,6 +258,15 @@ switch (state)
 		if(image_index > image_number-3)
 		{
 			state = "ground";
+			if(image_xscale = 1)
+			{
+				x += ability2XChange;
+			}
+			else
+			{
+				x -= ability2XChange;
+			}
+			y += ability2YChange;
 		}
 		break;
 		
@@ -252,7 +281,7 @@ switch (state)
 		break;
 }
 
-if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state != "climb")
+if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state!="ability2" && state!="ability3" && state!="ability4" && state != "climb")
 {
 	sprite_index = jumpingSprite;
 }

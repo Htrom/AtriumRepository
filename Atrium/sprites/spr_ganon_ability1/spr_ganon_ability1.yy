@@ -2,7 +2,7 @@
     "id": "8a832aea-a0a8-4ea6-b418-7ec417a1f1d4",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "spr_ganon_attack",
+    "name": "spr_ganon_ability1",
     "For3D": false,
     "HTile": false,
     "VTile": false,

@@ -91,9 +91,17 @@ with(healthbar)
 	y = other.y - 50;
 	image_xscale = other.hp/100;
 	image_yscale = .25;
+	if(other.hp<0)
+	{
+		instance_destroy();
+	}
 }
 
 
 x += hsp;
 y += vsp;
 
+if(y > 2054)
+{
+	instance_destroy();
+}

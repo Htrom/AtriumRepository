@@ -143,6 +143,14 @@
             }
         },
         {
+            "Key": "490ae364-b878-403c-826c-4ffb1494ed11",
+            "Value": {
+                "id": "8a4aec71-b6f8-4983-81c9-a3e130eb815d",
+                "resourcePath": "sprites\\spr_ganon_ability2\\spr_ganon_ability2.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "4a8a5878-de0d-4d84-baa3-8416e3cfecfc",
             "Value": {
                 "id": "64feee63-204c-48f0-9a72-383e6018fd5f",
@@ -210,7 +218,7 @@
             "Key": "68250f17-186e-43b7-aecf-326ab07aa655",
             "Value": {
                 "id": "fe4138e0-9de8-4c0b-b8a4-45634e04efbd",
-                "resourcePath": "sprites\\spr_ganon_attack_hitbox\\spr_ganon_attack_hitbox.yy",
+                "resourcePath": "sprites\\spr_ganon_ability1_hitbox\\spr_ganon_ability1_hitbox.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -279,10 +287,18 @@
             }
         },
         {
+            "Key": "8900edf3-b458-4d84-a142-b7ae49b59259",
+            "Value": {
+                "id": "ace38b58-126c-4e61-92e0-5f7a7637becb",
+                "resourcePath": "objects\\obj_ganon_ability2_hitbox\\obj_ganon_ability2_hitbox.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "8a832aea-a0a8-4ea6-b418-7ec417a1f1d4",
             "Value": {
                 "id": "8bd35295-d7ad-4e88-a4b0-d9628dd9ec2c",
-                "resourcePath": "sprites\\spr_ganon_attack\\spr_ganon_attack.yy",
+                "resourcePath": "sprites\\spr_ganon_ability1\\spr_ganon_ability1.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -460,6 +476,14 @@
                 "id": "9c08a0e6-5478-43bb-8314-36c4c9275e75",
                 "resourcePath": "views\\ba3dea80-22db-4282-89ed-08db79b3b96a.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "bb683481-2aeb-4f47-a6fb-036c6e6f6599",
+            "Value": {
+                "id": "8ba722de-bb70-4ac8-9638-1a7a6a17136e",
+                "resourcePath": "sprites\\spr_ganon_ability2_hitbox\\spr_ganon_ability2_hitbox.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
