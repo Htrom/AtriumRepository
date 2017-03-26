@@ -4,7 +4,7 @@ if(!activated)
 {
 	
 	hit1 = instance_place(x,y,obj_player);
-	hit1.x-=5;
+	//hit1.x-=5;
 //	hit1.hp-=damage;
 	
 	activated = true;

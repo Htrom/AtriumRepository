@@ -84,8 +84,9 @@ else if(key_x)
 				if(hit == 0)
 				{
 					hit = 1;
-					vsp = -10;
-					hsp = sign(x-other.x)*4;
+					vsp = -6;
+					hsp = sign(x-other.x)*6;
+					hp -= other.ability1Damage;
 					image_xscale = sign(hsp);
 				}
 			}
