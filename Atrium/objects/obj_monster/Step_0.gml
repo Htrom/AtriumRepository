@@ -1,6 +1,6 @@
 
 
-nearestPlayer = instance_nearest(x-64,y,obj_player);
+nearestPlayer = instance_nearest(x,y,obj_player);
 if(nearestPlayer.x > x+65)
 {
 	if(hsp<moveSpeed)
@@ -92,6 +92,7 @@ with(healthbar)
 	image_xscale = other.hp/100;
 	image_yscale = .25;
 }
+
 
 x += hsp;
 y += vsp;

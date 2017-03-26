@@ -193,6 +193,54 @@ switch (state)
 		}
 		break;
 		
+	case "ability2":
+			sprite_index = ability2Sprite;
+		if(place_meeting(x,y+1,obj_wall))
+		{
+			hsp = 0;
+		}
+		if(image_index >= ability2BeginFrame && image_index <=ability2EndFrame)
+		{
+			
+			with(instance_create_depth(x,y,0,hitbox))
+			{
+				ability2EndFrame = other.ability2EndFrame;
+				ability2BeginFrame = other.ability2BeginFrame;
+				ability2Damage = other.ability2Damage;
+				ability2KnockBack = other.ability2KnockBack;
+				image_xscale = other.image_xscale;	
+				l = instance_place_list(x,y,obj_monster)
+				if(!ds_list_empty(l))
+				{
+					for(var i = 0; i < ds_list_size(l); i++)
+					{
+						with(ds_list_find_value(l,i))
+						{
+							if(hit == 0)
+							{
+								hit = 1;
+								attackImmuneCounter = 0;
+								attackImmuneTime = (other.ability2EndFrame - other.ability2BeginFrame); 
+								vsp = -10;
+								hsp = sign(x-other.x)*other.ability2KnockBack;
+								hp -= other.ability2Damage;
+								image_xscale = sign(hsp);
+								if(hp < 0)
+								{
+									i--;
+								}							
+							}
+						}
+					}
+				}
+			}
+		}
+		if(image_index > image_number-3)
+		{
+			state = "ground";
+		}
+		break;
+		
 		case "jump":
 			if(place_meeting(x,y+1,obj_wall))
 			{
@@ -211,6 +259,12 @@ if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state != "climb")
 
 x += hsp;
 y += vsp;
+
+if(place_meeting(x,y+1,obj_wall))
+{
+	fallx = x - sign(hsp)*70;
+	fally = y;
+}
 
 if(y > 2050)
 {

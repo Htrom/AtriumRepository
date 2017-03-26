@@ -386,7 +386,7 @@
             "Key": "a639eb7d-6655-440a-8e99-81d3ee562057",
             "Value": {
                 "id": "3d742be1-1218-4fd0-9c06-a4cd92ecb353",
-                "resourcePath": "objects\\obj_ganon_attack_hitbox\\obj_ganon_attack_hitbox.yy",
+                "resourcePath": "objects\\obj_ganon_ability1_hitbox\\obj_ganon_ability1_hitbox.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -404,6 +404,14 @@
                 "id": "91ac0dd1-41c2-4934-bd85-a4ceb30d8f75",
                 "resourcePath": "views\\a8033d52-a196-4c12-9f7b-08147117423c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
+            "Value": {
+                "id": "656dc594-5cd9-42cc-bb27-c65bc5481d82",
+                "resourcePath": "options\\linux\\options_linux.yy",
+                "resourceType": "GMLinuxOptions"
             }
         },
         {
@@ -588,6 +596,14 @@
                 "id": "e0589185-6e09-42b8-9e31-311c4e8cbdbf",
                 "resourcePath": "views\\f3d3d068-23a9-4efb-86a0-477e244e3a4f.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
+            "Value": {
+                "id": "5a4c2117-c81c-4486-9908-90d4051d1e50",
+                "resourcePath": "options\\mac\\options_mac.yy",
+                "resourceType": "GMMacOptions"
             }
         },
         {
