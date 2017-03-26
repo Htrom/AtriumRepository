@@ -16,6 +16,8 @@ vsp = 0;
 hitbox = obj_ganon_attack_hitbox;
 ability1BeginFrame = 8;
 ability1EndFrame = 12;
+ability1Damage = 35;
+
 
 //sprites
 moveSprite = spr_ganon_move;

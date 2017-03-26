@@ -12,4 +12,4 @@ activated = false;
 moveSprite = spr_slime_move;
 hit = 0;
 
-hspAccel = 0.1;
+hspAccel = 0.6;
