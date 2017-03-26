@@ -15,3 +15,5 @@ hit = 0;
 hspAccel = 0.6;
 attackImmuneTime = 0;
 attackImmuneCounter = 0;
+
+healthbar = instance_create_depth(x,y,0,obj_healthbar);

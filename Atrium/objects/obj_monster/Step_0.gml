@@ -85,6 +85,14 @@ if(hit == 1)
 	attackImmuneCounter++;
 }
 
+with(healthbar)
+{
+	x = other.x - 42;
+	y = other.y - 50;
+	image_xscale = other.hp/100;
+	image_yscale = .25;
+}
+
 x += hsp;
 y += vsp;
 

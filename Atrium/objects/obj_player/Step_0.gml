@@ -6,6 +6,9 @@ key_climb = keyboard_check(vk_up);
 key_climb_down = keyboard_check(vk_down);
 key_x = keyboard_check(ord("X"));
 xpos = x;
+
+
+
 //React to input
 move = key_left + key_right;
 if(key_left)
@@ -201,10 +204,15 @@ switch (state)
 
 if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state != "climb")
 {
-	sprite_index = jumpingSprite;	
+	sprite_index = jumpingSprite;
 }
 
 x += hsp;
 y += vsp;
 
+if(y > 2050)
+{
+	y = fally;
+	x = fallx;
+}
 

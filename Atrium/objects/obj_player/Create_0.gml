@@ -9,6 +9,8 @@ var currentXp;
 var jumpSpeed;
 var move;
 var jumpingSprite;
+var fallx;
+var fally;
 
 var ability2;
 var ability2Cooldown;
