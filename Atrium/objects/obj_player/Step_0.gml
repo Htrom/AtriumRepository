@@ -66,7 +66,7 @@ if(place_meeting(x+hsp,y,obj_wall))
 }
 
 //Vertical Collison
-if(place_meeting(x,y + vsp,obj_wall))
+if(place_meeting(x,y + vsp,obj_wall) && !place_meeting(x,y-1,obj_wall))
 {
 	while(!place_meeting(x,y+sign(vsp),obj_wall))
 	{
@@ -335,13 +335,18 @@ if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state!="ability2" && s
 	sprite_index = jumpingSprite;
 }
 
+
+
 x += hsp;
 y += vsp;
 
-if(place_meeting(x,y+1,obj_wall))
+if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 {
-	fallx = x - sign(hsp)*70;
-	fally = y;
+	var lastTouched = instance_place(x,y+2,obj_wall);
+
+	
+	fallx = lastTouched.x+lastTouched.sprite_width/2;
+	fally = lastTouched.y - 64;
 }
 
 if(y > 2050)
