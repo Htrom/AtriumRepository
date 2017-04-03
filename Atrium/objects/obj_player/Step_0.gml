@@ -66,8 +66,8 @@ if(place_meeting(x+hsp+(sign(hsp)*2),y,obj_wall))
 }
 
 //Vertical Collison
-if(!place_meeting(x,y-1,obj_wall))
-{
+//if(!place_meeting(x,y-3,obj_wall))
+//{
 	if(place_meeting(x,y + vsp,obj_wall))
 	{
 		while(!place_meeting(x,y+sign(vsp),obj_wall))
@@ -76,7 +76,7 @@ if(!place_meeting(x,y-1,obj_wall))
 		}
 		vsp = 0;
 	}
-}
+//}
 
 
 

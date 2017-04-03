@@ -103,5 +103,8 @@ y += vsp;
 
 if(y > 2054)
 {
+	with(healthbar){
+		instance_destroy();
+	}
 	instance_destroy();
 }
