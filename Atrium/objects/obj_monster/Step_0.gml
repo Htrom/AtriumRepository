@@ -76,7 +76,7 @@ if(state == "ground")
 	}
 }
 
-if(attackImmuneCounter > attackImmuneTime+3)
+if(attackImmuneCounter > attackImmuneTime+5)
 {
 	hit = 0;
 }
