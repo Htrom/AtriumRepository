@@ -55,22 +55,22 @@ if(vsp < 30)
 
 
 //Horizontal Collison
-if(place_meeting(x+hsp,y,obj_wall))
+if(place_meeting(x+hsp+(sign(hsp)*2),y,obj_wall))
 {
 	while(!place_meeting(x+sign(hsp),y,obj_wall))
 	{
-		x +=sign(hsp);
+		x +=sign(hsp)/2;
 	}
 	hsp = 0;
 	
 }
 
 //Vertical Collison
-if(place_meeting(x,y + vsp,obj_wall) && !place_meeting(x,y-1,obj_wall))
+if(place_meeting(x,y + vsp,obj_wall))
 {
 	while(!place_meeting(x,y+sign(vsp),obj_wall))
 	{
-		y +=sign(vsp);
+		y +=sign(vsp)/2;
 	}
 	vsp = 0;
 	
@@ -82,6 +82,7 @@ switch (state)
 {
 	
 	case "ground":
+	
 	
 	if(key_jump && !place_meeting(x,y-10,obj_wall)){
 		
@@ -101,19 +102,13 @@ switch (state)
 		image_index = 0;
 		
 	}
-	else if(key_climb || key_climb_down)
-	{
-		if(place_meeting(x,y+1,obj_ladder_air))
-		{
-		
-			state = "climb";
-		}
-	}
+	
 	else if(key_right)
 	{
 		if(place_meeting(x,y+1,obj_wall))
 		{
 			sprite_index = moveSprite;
+			sprite_set_speed(moveSprite,12,0)
 		}
 		image_xscale = 1;
 	}
@@ -122,11 +117,19 @@ switch (state)
 		if(place_meeting(x,y+1,obj_wall))
 		{
 			sprite_index = moveSprite;
+			sprite_set_speed(moveSprite,12,0)
 		}
 		image_xscale = -1;
 	}
 	
-	
+	else if(key_climb || key_climb_down)
+	{
+		if(place_meeting(x,y+1,obj_ladder_air))
+		{
+		
+			state = "climb";
+		}
+	}
 	else
 	{
 		if(place_meeting(x,y+1,obj_wall))
@@ -171,7 +174,7 @@ switch (state)
 	else if(key_jump && !place_meeting(x,y+1,obj_wall)){
 		
 		vsp = key_jump * -jumpSpeed;
-		sprite_set_speed(moveSprite,15,0)
+		sprite_set_speed(moveSprite,12,0)
 		state = "jump";
 	}
 	else
@@ -346,11 +349,13 @@ if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 
 	
 	fallx = lastTouched.x+lastTouched.sprite_width/2;
-	fally = lastTouched.y - 64;
+	fally = lastTouched.y - 66;
 }
 
 if(y > 2050)
 {
+	
+	
 	y = fally;
 	x = fallx;
 }

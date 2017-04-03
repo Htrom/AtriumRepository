@@ -2,10 +2,10 @@
 abilityBarCreated = false;
 items = "array of items";
 hp = 300;
-moveSpeed = 6;
-attackSpeed = 15;
-jumpSpeed = 13; 
-grav = 1;
+moveSpeed = 3;
+attackSpeed = 7.5;
+jumpSpeed = 6.5;
+grav = 0.25;
 
 evadeChange = 0;
 critChance = 0;
@@ -25,8 +25,8 @@ ability1Hitbox = obj_ganon_ability1_hitbox;
 ability1BeginFrame = 8;
 ability1EndFrame = 9;
 ability1Damage = 38;
-ability1HorKnockBack = 10;
-ability1VerKnockBack = 10;
+ability1HorKnockBack = 8;
+ability1VerKnockBack = 3;
 ability1XChange = 0;
 ability1YChange = 0;
 
@@ -42,8 +42,8 @@ ability2Hitbox = obj_ganon_ability2_hitbox;
 ability2BeginFrame = 5;
 ability2EndFrame = 7;
 ability2Damage = 100;
-ability2HorKnockBack = 5;
-ability2VerKnockBack = 15;
+ability2HorKnockBack = 2;
+ability2VerKnockBack = 8;
 ability2XChange = 0;
 ability2YChange = 0;
 
