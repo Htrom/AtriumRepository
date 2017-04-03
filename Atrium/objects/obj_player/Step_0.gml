@@ -124,13 +124,9 @@ switch (state)
 		image_xscale = -1;
 	}
 	
-	else if(key_climb || key_climb_down)
+	else if(key_climb || key_climb_down && place_meeting(x,y+1,obj_ladder_air))
 	{
-		if(place_meeting(x,y+1,obj_ladder_air))
-		{
-		
-			state = "climb";
-		}
+		state = "climb";
 	}
 	else
 	{

@@ -57,7 +57,8 @@
         "45432f98-9da3-4c68-90d2-4ee9a6a08ad6",
         "b3638f4e-0f35-48bc-8b04-dbd23f3e8467",
         "5e713be4-0c7c-424c-a079-e89b35d1ee00",
-        "90972c64-01cb-4785-84af-dd9cc94a3cdf"
+        "90972c64-01cb-4785-84af-dd9cc94a3cdf",
+        "ecb63197-d384-49c1-b73c-43f7f9048ec4"
     ],
     "layers": [
         {
@@ -1246,8 +1247,8 @@
                     "m_originalParentID": "00000000-0000-0000-0000-000000000000",
                     "m_serialiseFrozen": false,
                     "name": "inst_123ABF0D",
-                    "x": 1152,
-                    "y": 1344,
+                    "x": 608,
+                    "y": 96,
                     "IsDnD": false,
                     "colour": {
                         "Value": 4294967295
@@ -1257,6 +1258,30 @@
                     "inheritCode": false,
                     "name_with_no_file_rename": "inst_123ABF0D",
                     "objId": "e2f25443-7c27-4a9a-bd18-6e74f91272a4",
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                {
+                    "id": "ecb63197-d384-49c1-b73c-43f7f9048ec4",
+                    "modelName": "GMRInstance",
+                    "mvc": "1.0",
+                    "ignore": false,
+                    "inheritItemSettings": false,
+                    "m_originalParentID": "00000000-0000-0000-0000-000000000000",
+                    "m_serialiseFrozen": false,
+                    "name": "inst_25B71874",
+                    "x": 64,
+                    "y": -128,
+                    "IsDnD": false,
+                    "colour": {
+                        "Value": 4294967295
+                    },
+                    "creationCodeFile": "",
+                    "creationCodeType": "",
+                    "inheritCode": false,
+                    "name_with_no_file_rename": "inst_25B71874",
+                    "objId": "ca38be80-edf5-4dc8-823a-c9912dfd90d9",
                     "rotation": 0,
                     "scaleX": 1,
                     "scaleY": 1
@@ -1389,7 +1414,7 @@
             "hspeed": -1,
             "hview": 1024,
             "inherit": false,
-            "objId": "c424c5b8-4ca1-4b32-b019-20ee47783785",
+            "objId": "00000000-0000-0000-0000-000000000000",
             "vborder": 512,
             "visible": true,
             "vspeed": -1,
