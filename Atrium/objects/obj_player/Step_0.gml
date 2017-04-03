@@ -66,14 +66,16 @@ if(place_meeting(x+hsp+(sign(hsp)*2),y,obj_wall))
 }
 
 //Vertical Collison
-if(place_meeting(x,y + vsp,obj_wall))
+if(!place_meeting(x,y-1,obj_wall))
 {
-	while(!place_meeting(x,y+sign(vsp),obj_wall))
+	if(place_meeting(x,y + vsp,obj_wall))
 	{
-		y +=sign(vsp)/2;
+		while(!place_meeting(x,y+sign(vsp),obj_wall))
+		{
+			y +=sign(vsp)/2;
+		}
+		vsp = 0;
 	}
-	vsp = 0;
-	
 }
 
 
@@ -337,6 +339,7 @@ if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state!="ability2" && s
 {
 	sprite_index = jumpingSprite;
 }
+
 
 
 
