@@ -9,7 +9,31 @@ key_x = keyboard_check(ord("X"));
 
 xpos = x;
 
-
+if(!abilityBarCreated)
+{
+	instance_create_layer(10000,0,"HUD",obj_abilitybar);
+	
+	with(instance_create_layer(10000,0,"HUD",obj_ability1_image))
+	{
+		sprite_index = other.ability1Image;
+	}
+	
+	with(instance_create_layer(10000,0,"HUD",obj_ability2_image))
+	{
+		sprite_index = other.ability2Image;
+		
+	}
+	with(instance_create_layer(10000,0,"HUD",obj_ability3_image))
+	{
+		sprite_index = other.ability3Image;
+	}
+	with(instance_create_layer(10000,0,"HUD",obj_ability4_image))
+	{
+		sprite_index = other.ability4Image;
+	}
+	
+	abilityBarCreated = true;
+}
 
 //React to input
 move = key_left + key_right;
@@ -64,17 +88,18 @@ switch (state)
 		state = "jump"
 		sprite_index = jumpingSprite;
 	}
-	else if(key_z)
+	else if(key_z && !ability1OnCooldown)
 	{
 		state = "ability1";	
 		sprite_index = ability1Sprite;
 		image_index = 0;
 	}
-	else if(key_x)
+	else if(key_x && !ability2OnCooldown)
 	{
 		state = "ability2";
 		sprite_index = ability2Sprite;
 		image_index = 0;
+		
 	}
 	else if(key_climb || key_climb_down)
 	{
@@ -167,6 +192,13 @@ switch (state)
 		if(image_index >= ability1BeginFrame && image_index <=ability1EndFrame)
 		{
 			
+			
+			if(!ability1OnCooldown)
+			{
+				ability1OnCooldown = true;
+				ability1CooldownCounter = ability1Cooldown + current_time;
+			}
+			
 			with(instance_create_depth(x,y,0,ability1Hitbox))
 			{
 				ability1EndFrame = other.ability1EndFrame;
@@ -223,6 +255,13 @@ switch (state)
 		{
 			hsp = 0;
 		}
+		
+			if(!ability2OnCooldown)
+			{
+				ability2OnCooldown = true;
+				ability2CooldownCounter = ability2Cooldown + current_time;
+			}
+		
 		if(image_index >= ability2BeginFrame && image_index <=ability2EndFrame)
 		{
 			
@@ -264,6 +303,7 @@ switch (state)
 		}
 		if(image_index > image_number-2)
 		{
+			
 			state = "ground";
 			if(image_xscale = 1)
 			{
@@ -309,3 +349,114 @@ if(y > 2050)
 	y = fally;
 	x = fallx;
 }
+
+
+
+		
+
+if(current_time > ability1CooldownCounter)
+{
+	ability1OnCooldown = false;
+}
+else{
+	ability1OnCooldown = true;
+	var displayTime = round((current_time - ability1CooldownCounter)/10);
+
+	if(displayTime % 25 == 0 && displayTime < 0)
+	{
+		ability1CooldownTimeDis = abs(displayTime/100);
+	}else if(abs(displayTime/100) > 0)
+	{
+		ability1CooldownTimeDis = .5;
+	}
+}
+
+
+if(current_time > ability2CooldownCounter)
+{
+	ability2OnCooldown = false;
+}
+else{
+	ability2OnCooldown = true;
+	var displayTime = round((current_time - ability2CooldownCounter)/10);
+
+	if(displayTime % 25 == 0 && displayTime < 0)
+	{
+	
+		ability2CooldownTimeDis = abs(displayTime/100);
+	}
+	else if(abs(displayTime/100) > 0)
+	{
+		ability1CooldownTimeDis = .5;
+	}
+}
+
+	
+if(current_time > ability3CooldownCounter)
+{
+	ability3OnCooldown = false;
+	
+}
+else{
+	ability3OnCooldown = true;
+	var displayTime = round((current_time - ability3CooldownCounter)/10);
+
+	if(displayTime % 25 == 0 && displayTime < 0)
+	{
+	
+		ability3CooldownTimeDis = abs(displayTime/100) + .5;
+	}
+	else if(abs(displayTime/100) > 0)
+	{
+		ability1CooldownTimeDis = .5;
+	}
+}
+
+
+if(current_time > ability4CooldownCounter)
+{
+	ability4OnCooldown = false;
+}
+else{
+	ability4OnCooldown = true;
+	var displayTime = round((current_time - ability4CooldownCounter)/10);
+
+	if(displayTime % 25 == 0 && displayTime < 0)
+	{
+	
+		ability4CooldownTimeDis = abs(displayTime/100)+ .5;
+	}
+	else if(abs(displayTime/100) > 0)
+	{
+		ability1CooldownTimeDis = .5;
+	}
+}
+
+
+
+with(obj_ability1_image)
+{
+	onCooldown = other.ability1OnCooldown;
+	timeDis = other.ability1CooldownTimeDis;
+}
+
+with(obj_ability2_image)
+{
+	onCooldown = other.ability2OnCooldown;
+	timeDis = other.ability2CooldownTimeDis;
+}
+
+with(obj_ability3_image)
+{
+	onCooldown = other.ability3OnCooldown;
+	timeDis = other.ability3CooldownTimeDis;
+}
+
+with(obj_ability4_image)
+{
+	onCooldown = other.ability4OnCooldown;
+	timeDis = other.ability4CooldownTimeDis;
+}
+
+
+		

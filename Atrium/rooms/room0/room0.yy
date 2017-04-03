@@ -10,7 +10,6 @@
     "inheritLayers": false,
     "instanceCreationOrderIDs": [
         "51109304-3766-47fa-bf61-282a44ae20e6",
-        "90972c64-01cb-4785-84af-dd9cc94a3cdf",
         "854f748f-95e5-4a27-85bf-1150acd071ec",
         "cc6061c7-7a88-4451-b54e-2c988b7aacdf",
         "e09c919d-dd4a-40aa-8ab4-a2385e7477aa",
@@ -56,16 +55,43 @@
         "0e1e0bcc-f310-48e6-926c-e51fbbe90637",
         "989d23d4-dba4-4a04-88e6-0796a1ee2784",
         "45432f98-9da3-4c68-90d2-4ee9a6a08ad6",
+        "b3638f4e-0f35-48bc-8b04-dbd23f3e8467",
         "5e713be4-0c7c-424c-a079-e89b35d1ee00",
-        "b3638f4e-0f35-48bc-8b04-dbd23f3e8467"
+        "90972c64-01cb-4785-84af-dd9cc94a3cdf"
     ],
     "layers": [
+        {
+            "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
+            "id": "2f92e1e4-276a-4b9a-9907-a47fb7dd6473",
+            "modelName": "GMRInstanceLayer",
+            "mvc": "1.0",
+            "depth": 0,
+            "grid_x": 32,
+            "grid_y": 32,
+            "hierarchyFrozen": false,
+            "hierarchyVisible": true,
+            "inheritLayerDepth": false,
+            "inheritLayerSettings": false,
+            "inheritSubLayers": false,
+            "inheritVisibility": false,
+            "layers": [
+                
+            ],
+            "m_parentID": "00000000-0000-0000-0000-000000000000",
+            "m_serialiseFrozen": false,
+            "name": "HUD",
+            "userdefined_depth": false,
+            "visible": true,
+            "instances": [
+                
+            ]
+        },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "id": "277bbc23-f652-4f9c-ab7b-126780d18ce6",
             "modelName": "GMRInstanceLayer",
             "mvc": "1.0",
-            "depth": 0,
+            "depth": 100,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -812,14 +838,14 @@
                     "m_originalParentID": "00000000-0000-0000-0000-000000000000",
                     "m_serialiseFrozen": false,
                     "name": "inst_1ED96C1D",
-                    "x": 1184,
+                    "x": 1216,
                     "y": 1120,
                     "IsDnD": false,
                     "colour": {
                         "Value": 4294967295
                     },
-                    "creationCodeFile": "",
-                    "creationCodeType": "",
+                    "creationCodeFile": "InstanceCreationCode_inst_1ED96C1D.gml",
+                    "creationCodeType": ".gml",
                     "inheritCode": false,
                     "name_with_no_file_rename": "inst_1ED96C1D",
                     "objId": "ad061fcb-f3f4-4947-9a5c-0ffea6ee7108",
@@ -1242,7 +1268,7 @@
             "id": "aabf3b0c-7c63-4f9d-af0c-e74593a8df1d",
             "modelName": "GMRInstanceLayer",
             "mvc": "1.0",
-            "depth": 100,
+            "depth": 200,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,

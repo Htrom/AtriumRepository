@@ -4,15 +4,12 @@
     "mvc": "1.1",
     "name": "9489a339-7f62-4793-966f-6baa4792f11d",
     "children": [
-        "ebc4ca2e-e1eb-46e9-b6d2-140077538129",
-        "8a832aea-a0a8-4ea6-b418-7ec417a1f1d4",
-        "84c3334d-7630-4272-b1ec-3d3d35fbd08f",
-        "96c0798b-745e-4f90-bd10-3201d6df754f",
         "01751fbd-0d08-4b94-b0e9-42fa02163132",
-        "68250f17-186e-43b7-aecf-326ab07aa655",
-        "490ae364-b878-403c-826c-4ffb1494ed11",
-        "95896cf1-5cc8-4b9c-8d8d-8706aa35e277",
-        "bb683481-2aeb-4f47-a6fb-036c6e6f6599"
+        "0ff5eef3-483c-4bd3-a4c3-2b953fc5c85f",
+        "2d0c36c9-62ff-4948-b25d-1689da3a64f6",
+        "668fdc6c-8f89-42d6-97ed-a9d22214bb59",
+        "8be4a8ac-8aa7-4d2b-ba09-e0dfd87205d0",
+        "8c0d4cf0-e64d-49dd-abcb-9b6a0845e02d"
     ],
     "filterType": "GMSprite",
     "folderName": "ganon",
