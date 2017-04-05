@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-nearestPlayer = instance_nearest(x,y, obj_player);
+nearestPlayer = instance_find(obj_player,0);
 
 if(nearestPlayer.x >957 && nearestPlayer.x <= (4800))
 {

@@ -3,10 +3,11 @@ camera_set_view_pos(view_camera[0], x, y);
 camera_set_view_size(view_camera[0], 1920, 1024);
 
 //Setting up object target information
-camera_set_view_target(view_camera[0], instance_nearest(x,y,obj_ganon));
+camera_set_view_target(view_camera[0], instance_find(obj_ganon,0));
 camera_set_view_speed(view_camera[0], -1, -1);
 camera_set_view_border(view_camera[0], 960, 512);
 
+player2 = false;
 //Ganon Instantiate
 abilityBarCreated = false;
 items = "array of items";

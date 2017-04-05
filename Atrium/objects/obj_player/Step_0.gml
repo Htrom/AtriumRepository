@@ -1,4 +1,7 @@
+
+
 //Get player input
+if(!player2){
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
 key_jump = keyboard_check(vk_space);
@@ -6,7 +9,9 @@ key_climb = keyboard_check(vk_up);
 key_climb_down = keyboard_check(vk_down);
 key_z = keyboard_check(ord("Z"));
 key_x = keyboard_check(ord("X"));
+}
 
+	
 xpos = x;
 
 if(!abilityBarCreated)
