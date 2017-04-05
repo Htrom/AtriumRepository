@@ -31,6 +31,14 @@ switch(message_id)
 			
 		}
 		break;
-	
-	
+	case 2:
+		instance_create_depth(0, 0, 0, obj_ganon);
+		var numberEnemies = buffer_read(buffer, buffer_u8);
+		
+		for(var i = 0; i < numberEnemies; i++)
+		{
+			var monXPos = buffer_read(buffer, buffer_u16);
+			var monYPos = buffer_read(buffer, buffer_u16);
+			instance_create_depth(monXPos, monYPos, 0, obj_slime);	
+		}	
 }
