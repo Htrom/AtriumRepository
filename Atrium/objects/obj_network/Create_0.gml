@@ -1,6 +1,6 @@
 /// @description Initialize the network
 var type = network_socket_tcp;
-var ip = "10.0.0.11";
+var ip = "172.101.200.241";
 var port = 8000;
 
 if(global.role != "HOST")

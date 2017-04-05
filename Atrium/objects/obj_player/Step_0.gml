@@ -40,6 +40,7 @@ if(!abilityBarCreated)
 	abilityBarCreated = true;
 }
 
+
 //React to input
 move = key_left + key_right;
 if(key_left)
@@ -135,58 +136,66 @@ switch (state)
 	}
 	else
 	{
-		if(place_meeting(x,y+1,obj_wall))
-		{
+		//if(place_meeting(x,y+1,obj_wall))
+		//{
 			sprite_index = idleSprite;
-		}
+		//}
 	}
 	
 	break;
 	
 	
 	case "climb":
-	if(key_climb)
+	if(place_meeting(x,y+1,obj_ladder_air))
 	{
-		if(place_meeting(x,y+1,obj_ladder_air))
+		if(key_climb)
 		{
+			if(place_meeting(x,y+1,obj_ladder_air))
+			{
 		
-			vsp = -4;
-			sprite_set_speed(moveSprite,15,0)
-			sprite_index = moveSprite;
-		}else
-		{
-			state = "ground";
+				vsp = -4;
+				sprite_set_speed(moveSprite,15,0)
+				sprite_index = moveSprite;
+			}else
+			{
+				state = "ground";
+			}
 		}
-	}
-	else if(key_climb_down)
-	{
-		if(place_meeting(x,y+1,obj_ladder_air))
+		else if(key_climb_down)
 		{
+			if(place_meeting(x,y+1,obj_ladder_air))
+			{
 		
-			vsp = 4;
+				vsp = 4;
 			
-			sprite_set_speed(moveSprite,-15,0)
-			sprite_index = moveSprite;
+				sprite_set_speed(moveSprite,-15,0)
+				sprite_index = moveSprite;
 			
-		}else
-		{
-			state = "ground";
+			}else
+			{
+				state = "ground";
+			}
+		
 		}
+		else if(key_jump && !place_meeting(x,y+1,obj_wall)){
 		
-	}
-	else if(key_jump && !place_meeting(x,y+1,obj_wall)){
-		
-		vsp = key_jump * -jumpSpeed;
-		sprite_set_speed(moveSprite,12,0)
-		state = "jump";
+			vsp = key_jump * -jumpSpeed;
+			sprite_set_speed(moveSprite,12,0)
+			state = "jump";
+		}
+		else
+		{
+			vsp = 0;
+			sprite_set_speed(moveSprite,0,0)
+				sprite_index = moveSprite;
+		}
+		hsp = 0;
 	}
 	else
 	{
-		vsp = 0;
-		sprite_set_speed(moveSprite,0,0)
-			sprite_index = moveSprite;
+		sprite_set_speed(moveSprite,12,0)
+		state = "ground";
 	}
-	hsp = 0;
 	break;
 	
 	case "ability1":
@@ -343,9 +352,15 @@ if(!place_meeting(x,y+1,obj_wall) && state!="ability1" && state!="ability2" && s
 
 
 
-
-x += hsp;
-y += vsp;
+if(!player2){
+	x += hsp;
+	y += vsp;
+	if(y > 2050)
+	{
+		y = fally;
+		x = fallx;
+	}
+}
 
 if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 {
@@ -356,13 +371,6 @@ if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 	fally = lastTouched.y - 66;
 }
 
-if(y > 2050)
-{
-	
-	
-	y = fally;
-	x = fallx;
-}
 
 
 
