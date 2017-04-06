@@ -92,22 +92,24 @@ switch (state)
 	case "ground":
 	
 	
-	if(key_jump && !place_meeting(x,y-10,obj_wall)){
+	if(key_jump && !place_meeting(x,y-10,obj_wall) && place_meeting(x,y+1,obj_wall)){
 		
 		state = "jump"
 		sprite_index = jumpingSprite;
 	}
-	else if(key_z && !ability1OnCooldown)
+	else if(key_z && !ability1OnCooldown && current_stamina >= ability1StaminaDrain)
 	{
 		state = "ability1";	
 		sprite_index = ability1Sprite;
 		image_index = 0;
+		current_stamina -= ability1StaminaDrain;
 	}
-	else if(key_x && !ability2OnCooldown)
+	else if(key_x && !ability2OnCooldown && current_stamina >= ability2StaminaDrain)
 	{
 		state = "ability2";
 		sprite_index = ability2Sprite;
 		image_index = 0;
+		current_stamina -= ability2StaminaDrain;
 		
 	}
 	
@@ -130,7 +132,7 @@ switch (state)
 		image_xscale = -1;
 	}
 	
-	else if(key_climb || key_climb_down && place_meeting(x,y+1,obj_ladder_air))
+	else if((key_climb || key_climb_down) && place_meeting(x,y+1,obj_ladder_air))
 	{
 		state = "climb";
 	}
@@ -210,8 +212,8 @@ switch (state)
 			
 			if(!ability1OnCooldown)
 			{
-				ability1OnCooldown = true;
-				ability1CooldownCounter = ability1Cooldown + current_time;
+				//ability1OnCooldown = true;
+				//ability1CooldownCounter = ability1Cooldown + current_time;
 			}
 			
 			with(instance_create_depth(x,y,0,ability1Hitbox))
@@ -236,9 +238,9 @@ switch (state)
 								attackImmuneTime = (other.ability1EndFrame - other.ability1BeginFrame); 
 								vsp = -other.ability1VerKnockBack;
 								hsp = sign(x-other.x)*other.ability1HorKnockBack;
-								hp -= other.ability1Damage;
+								current_health -= other.ability1Damage;
 								image_xscale = sign(hsp);
-								if(hp < 0)
+								if(current_health < 0)
 								{
 									i--;
 								}							
@@ -273,8 +275,8 @@ switch (state)
 		
 			if(!ability2OnCooldown)
 			{
-				ability2OnCooldown = true;
-				ability2CooldownCounter = ability2Cooldown + current_time;
+				//ability2OnCooldown = true;
+				//ability2CooldownCounter = ability2Cooldown + current_time;
 			}
 		
 		if(image_index >= ability2BeginFrame && image_index <=ability2EndFrame)
@@ -304,9 +306,9 @@ switch (state)
 								attackImmuneTime = (other.ability2EndFrame - other.ability2BeginFrame)+1; 
 								vsp = -other.ability2VerKnockBack;
 								hsp = sign(x-other.x)*other.ability2HorKnockBack;
-								hp -= other.ability2Damage;
+								current_health -= other.ability2Damage;
 								image_xscale = sign(hsp);
-								if(hp < 0)
+								if(current_health < 0)
 								{
 									i--;
 								}							
@@ -359,6 +361,7 @@ if(!player2){
 	{
 		y = fally;
 		x = fallx;
+		current_health -= current_health*.4 + 10;
 	}
 }
 
@@ -373,112 +376,129 @@ if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 
 
 
+if(current_time >= last_time + 10)
+{
 
+	if(current_stamina < max_stamina)
+	{
+		current_stamina += stamina_regen_rate;
+	}
+	if(current_health < max_health)
+	{
+		current_health += health_regen_rate;
+	}
+	last_time = current_time;
+}
 		
 
-if(current_time > ability1CooldownCounter)
-{
-	ability1OnCooldown = false;
-}
-else{
-	ability1OnCooldown = true;
-	var displayTime = round((current_time - ability1CooldownCounter)/10);
+//if(current_time > ability1CooldownCounter)
+//{
+//	ability1OnCooldown = false;
+//}
+//else{
+//	ability1OnCooldown = true;
+//	var displayTime = round((current_time - ability1CooldownCounter)/10);
 
-	if(displayTime % 25 == 0 && displayTime < 0)
-	{
-		ability1CooldownTimeDis = abs(displayTime/100);
-	}else if(abs(displayTime/100) > 0)
-	{
-		ability1CooldownTimeDis = .5;
-	}
-}
+//	if(displayTime % 25 == 0 && displayTime < 0)
+//	{
+//		ability1CooldownTimeDis = abs(displayTime/100);
+//	}else if(abs(displayTime/100) > 0)
+//	{
+//		ability1CooldownTimeDis = .5;
+//	}
+//}
 
 
-if(current_time > ability2CooldownCounter)
-{
-	ability2OnCooldown = false;
-}
-else{
-	ability2OnCooldown = true;
-	var displayTime = round((current_time - ability2CooldownCounter)/10);
+//if(current_time > ability2CooldownCounter)
+//{
+//	ability2OnCooldown = false;
+//}
+//else{
+//	ability2OnCooldown = true;
+//	var displayTime = round((current_time - ability2CooldownCounter)/10);
 
-	if(displayTime % 25 == 0 && displayTime < 0)
-	{
+//	if(displayTime % 25 == 0 && displayTime < 0)
+//	{
 	
-		ability2CooldownTimeDis = abs(displayTime/100);
-	}
-	else if(abs(displayTime/100) > 0)
-	{
-		ability1CooldownTimeDis = .5;
-	}
-}
+//		ability2CooldownTimeDis = abs(displayTime/100);
+//	}
+//	else if(abs(displayTime/100) > 0)
+//	{
+//		ability1CooldownTimeDis = .5;
+//	}
+//}
 
 	
-if(current_time > ability3CooldownCounter)
-{
-	ability3OnCooldown = false;
+//if(current_time > ability3CooldownCounter)
+//{
+//	ability3OnCooldown = false;
 	
-}
-else{
-	ability3OnCooldown = true;
-	var displayTime = round((current_time - ability3CooldownCounter)/10);
+//}
+//else{
+//	ability3OnCooldown = true;
+//	var displayTime = round((current_time - ability3CooldownCounter)/10);
 
-	if(displayTime % 25 == 0 && displayTime < 0)
-	{
+//	if(displayTime % 25 == 0 && displayTime < 0)
+//	{
 	
-		ability3CooldownTimeDis = abs(displayTime/100) + .5;
-	}
-	else if(abs(displayTime/100) > 0)
-	{
-		ability1CooldownTimeDis = .5;
-	}
-}
+//		ability3CooldownTimeDis = abs(displayTime/100) + .5;
+//	}
+//	else if(abs(displayTime/100) > 0)
+//	{
+//		ability1CooldownTimeDis = .5;
+//	}
+//}
 
 
-if(current_time > ability4CooldownCounter)
-{
-	ability4OnCooldown = false;
-}
-else{
-	ability4OnCooldown = true;
-	var displayTime = round((current_time - ability4CooldownCounter)/10);
+//if(current_time > ability4CooldownCounter)
+//{
+//	ability4OnCooldown = false;
+//}
+//else{
+//	ability4OnCooldown = true;
+//	var displayTime = round((current_time - ability4CooldownCounter)/10);
 
-	if(displayTime % 25 == 0 && displayTime < 0)
-	{
+//	if(displayTime % 25 == 0 && displayTime < 0)
+//	{
 	
-		ability4CooldownTimeDis = abs(displayTime/100)+ .5;
-	}
-	else if(abs(displayTime/100) > 0)
-	{
-		ability1CooldownTimeDis = .5;
-	}
-}
+//		ability4CooldownTimeDis = abs(displayTime/100)+ .5;
+//	}
+//	else if(abs(displayTime/100) > 0)
+//	{
+//		ability1CooldownTimeDis = .5;
+//	}
+//}
 
 
 
-with(obj_ability1_image)
+//with(obj_ability1_image)
+//{
+//	onCooldown = other.ability1OnCooldown;
+//	timeDis = other.ability1CooldownTimeDis;
+//}
+
+//with(obj_ability2_image)
+//{
+//	onCooldown = other.ability2OnCooldown;
+//	timeDis = other.ability2CooldownTimeDis;
+//}
+
+//with(obj_ability3_image)
+//{
+//	onCooldown = other.ability3OnCooldown;
+//	timeDis = other.ability3CooldownTimeDis;
+//}
+
+//with(obj_ability4_image)
+//{
+//	onCooldown = other.ability4OnCooldown;
+//	timeDis = other.ability4CooldownTimeDis;
+//}
+
+
+if(current_health <= 0)
 {
-	onCooldown = other.ability1OnCooldown;
-	timeDis = other.ability1CooldownTimeDis;
+	current_health = max_health;
+	x = 1000;
+	y = 700;
 }
-
-with(obj_ability2_image)
-{
-	onCooldown = other.ability2OnCooldown;
-	timeDis = other.ability2CooldownTimeDis;
-}
-
-with(obj_ability3_image)
-{
-	onCooldown = other.ability3OnCooldown;
-	timeDis = other.ability3CooldownTimeDis;
-}
-
-with(obj_ability4_image)
-{
-	onCooldown = other.ability4OnCooldown;
-	timeDis = other.ability4CooldownTimeDis;
-}
-
-
-		

@@ -89,9 +89,9 @@ with(healthbar)
 {
 	x = other.x - 42;
 	y = other.y - 50;
-	image_xscale = other.hp/100;
+	image_xscale = other.current_health / 100;
 	image_yscale = .25;
-	if(other.hp<0)
+	if(other.current_health < 0)
 	{
 		instance_destroy();
 	}

@@ -7,15 +7,32 @@ camera_set_view_target(view_camera[0], instance_find(obj_ganon,0));
 camera_set_view_speed(view_camera[0], -1, -1);
 camera_set_view_border(view_camera[0], 960, 512);
 
+
+
 player2 = false;
 //Ganon Instantiate
 abilityBarCreated = false;
 items = "array of items";
-hp = 300;
+
 moveSpeed = 3;
 attackSpeed = 7.5;
 jumpSpeed = 6.5;
 grav = 0.25;
+
+//health
+max_health = 100;
+current_health = max_health;
+health_regen_rate = .1;
+instance_create_layer(x, y, "Background", obj_health_player);
+
+//stamina
+max_stamina = 100;
+current_stamina = max_stamina;
+stamina_regen_rate = .2;
+
+instance_create_layer(x, y, "Background", obj_stamina_player);
+
+
 
 evadeChange = 0;
 critChance = 0;
@@ -25,6 +42,7 @@ state = "ground";
 
 //ability1
 ability1 = "SwordStrike";
+ability1StaminaDrain = 30;
 ability1Image = spr_ganon_ability1_image;
 ability1Cooldown = 300;
 ability1CooldownCounter = 0;
@@ -42,6 +60,7 @@ ability1YChange = 0;
 
 //ability2
 ability2 = "GroundSmash";
+ability2StaminaDrain = 60;
 ability2Image = spr_ganon_ability2_image;
 ability2Cooldown = 3000;
 ability2CooldownCounter = 0;
@@ -98,3 +117,7 @@ idleSprite = spr_ganon_idle;
 jumpingSprite = spr_ganon_jumping;
 
 climbingSprite = spr_ganon_jumping;
+
+
+//miscellaneous
+last_time = current_time;
