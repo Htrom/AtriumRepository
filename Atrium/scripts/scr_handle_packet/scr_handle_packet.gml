@@ -15,6 +15,7 @@ switch(message_id)
 		var	nkey_climb_down = buffer_read(buffer, buffer_bool);
 		var	nkey_z = buffer_read(buffer, buffer_bool);
 		var	nkey_x = buffer_read(buffer, buffer_bool);
+		var	nkey_c = buffer_read(buffer, buffer_bool);
 		// Set the position
 		with(instance_find(obj_player,1))
 		{
@@ -28,6 +29,7 @@ switch(message_id)
 			key_climb_down = nkey_climb_down;
 			key_z = nkey_z;
 			key_x = nkey_x;
+			key_c = nkey_c;
 			
 		}
 		break;

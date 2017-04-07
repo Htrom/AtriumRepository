@@ -10,6 +10,7 @@ var key_climb = obj_ganon.key_climb;
 var key_climb_down = obj_ganon.key_climb_down;
 var key_z = obj_ganon.key_z;
 var key_x = obj_ganon.key_x;
+var key_c = obj_ganon.key_c;
 //Send the action over the network
 var buffer = buffer_create(1024, buffer_fixed, 1);
 buffer_seek(buffer, buffer_seek_start,0);
@@ -23,6 +24,7 @@ buffer_write(buffer, buffer_bool, key_climb);
 buffer_write(buffer, buffer_bool, key_climb_down);
 buffer_write(buffer, buffer_bool, key_z);
 buffer_write(buffer, buffer_bool, key_x);
+buffer_write(buffer, buffer_bool, key_c);
 
 
 if(obj_network.is_server)
