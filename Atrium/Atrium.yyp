@@ -175,6 +175,14 @@
             }
         },
         {
+            "Key": "2e2f9b17-93be-414e-a85c-cceb9cf62e73",
+            "Value": {
+                "id": "76651ea0-8aae-4ba2-964f-206b5c8935b3",
+                "resourcePath": "sprites\\spr_ganon_ability3\\spr_ganon_ability3.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "2e41a54a-4fb2-47c0-a989-a4645f1c0b20",
             "Value": {
                 "id": "5e03f505-a3a2-48e5-b28d-02de751caa42",

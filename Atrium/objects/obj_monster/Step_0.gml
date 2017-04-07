@@ -1,6 +1,9 @@
 
 
 nearestPlayer = instance_nearest(x,y,obj_player);
+
+if(abs(nearestPlayer.x - x) < 1000 && abs(nearestPlayer.y - y) < 400)
+{
 if(nearestPlayer.x > x+15)
 {
 	if(hsp<moveSpeed)
@@ -11,7 +14,7 @@ if(nearestPlayer.x > x+15)
 	sprite_index = moveSprite;
 	image_xscale = 1;
 	
-}else if(nearestPlayer.x < x)
+}else if(nearestPlayer.x < x-15)
 {
 	if(hsp>-moveSpeed)
 	{
@@ -23,17 +26,29 @@ if(nearestPlayer.x > x+15)
 	image_xscale = -1;
 }else
 {
-//	hsp = 0;
+	
 	sprite_index = moveSprite;
 	
 }
 
-if(vsp < 30)
+
+if(place_meeting(x, y, nearestPlayer))
 {
-	vsp += grav;
+	with(nearestPlayer)
+	{
+		if(!immune)
+		{
+			current_health -= other.damage;
+		}
+		if(current_health <= 0)
+		{
+			current_health = max_health;
+			current_stamina = max_stamina;
+			x = 1000;
+			y = 700;
+		}
+	}
 }
-
-
 //Horizontal Collison
 if(place_meeting(x+hsp,y,obj_wall))
 {
@@ -44,6 +59,18 @@ if(place_meeting(x+hsp,y,obj_wall))
 	hsp = 0;
 	
 }
+}
+else
+{
+	hsp = 0;
+}
+if(vsp < 30)
+{
+	vsp += grav;
+}
+
+
+
 
 //Vertical Collison
 if(place_meeting(x,y + vsp,obj_wall))
@@ -96,6 +123,7 @@ with(healthbar)
 		instance_destroy();
 	}
 }
+
 
 
 x += hsp;

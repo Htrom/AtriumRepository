@@ -9,6 +9,7 @@ key_climb = keyboard_check(vk_up);
 key_climb_down = keyboard_check(vk_down);
 key_z = keyboard_check(ord("Z"));
 key_x = keyboard_check(ord("X"));
+key_c = keyboard_check(ord("C"));
 }
 
 	
@@ -97,19 +98,27 @@ switch (state)
 		state = "jump"
 		sprite_index = jumpingSprite;
 	}
-	else if(key_z && !ability1OnCooldown && current_stamina >= ability1StaminaDrain)
+	else if(key_z && !ability1OnCooldown && !stamina_cooling)
 	{
 		state = "ability1";	
 		sprite_index = ability1Sprite;
 		image_index = 0;
 		current_stamina -= ability1StaminaDrain;
 	}
-	else if(key_x && !ability2OnCooldown && current_stamina >= ability2StaminaDrain)
+	else if(key_x && !ability2OnCooldown && !stamina_cooling)
 	{
 		state = "ability2";
 		sprite_index = ability2Sprite;
 		image_index = 0;
 		current_stamina -= ability2StaminaDrain;
+		
+	}
+	else if(key_c && !ability3OnCooldown && !stamina_cooling)
+	{
+		state = "ability3";
+		sprite_index = ability3Sprite;
+		image_index = 0;
+		current_stamina -= ability3StaminaDrain;
 		
 	}
 	
@@ -334,6 +343,79 @@ switch (state)
 		}
 		break;
 		
+		case "ability3":
+			sprite_index = ability3Sprite;
+		//if(place_meeting(x,y+1,obj_wall))
+		//{
+		//	hsp = 0;
+		//}
+			immune = true;
+		
+			if(!ability3OnCooldown)
+			{
+				//ability3OnCooldown = true;
+				//ability3CooldownCounter = ability3Cooldown + current_time;
+			}
+		if(1!=1)
+		{
+			if(image_index >= ability3BeginFrame && image_index <=ability3EndFrame)
+			{
+			
+				with(instance_create_depth(x,y,0,ability3Hitbox))
+				{
+					ability3EndFrame = other.ability3EndFrame;
+					ability3BeginFrame = other.ability3BeginFrame;
+					ability3Damage = other.ability3Damage;
+					ability3VerKnockBack = other.ability3VerKnockBack;
+					ability3HorKnockBack = other.ability3HorKnockBack;
+				
+				
+					image_xscale = other.image_xscale;	
+					l = instance_place_list(x,y,obj_monster)
+					if(!ds_list_empty(l))
+					{
+						for(var i = 0; i < ds_list_size(l); i++)
+						{
+							with(ds_list_find_value(l,i))
+							{
+								if(hit == 0)
+								{
+									hit = 1;
+									attackImmuneCounter = 0;
+									attackImmuneTime = (other.ability3EndFrame - other.ability3BeginFrame)+1; 
+									vsp = -other.ability3VerKnockBack;
+									hsp = sign(x-other.x)*other.ability3HorKnockBack;
+									current_health -= other.ability3Damage;
+									image_xscale = sign(hsp);
+									if(current_health < 0)
+									{
+										i--;
+									}							
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		hsp = 10*sign(image_xscale);
+		if(image_index > image_number-2)
+		{
+			
+			state = "ground";
+			immune = false;
+			if(image_xscale = 1)
+			{
+				x += ability3XChange;
+			}
+			else
+			{
+				x -= ability3XChange;
+			}
+			y += ability3YChange;
+		}
+		break;
+		
 		case "jump":
 			
 			if(place_meeting(x,y+1,obj_wall))
@@ -375,14 +457,44 @@ if(place_meeting(x,y+1,obj_wall) && !place_meeting(x,y-1,obj_wall))
 }
 
 
+if(current_stamina < 0)
+{
+	stamina_cooling = true;
+	current_stamina = 0;
+	stamina_cooldown_start = current_time;
+	
+}
 
+
+	
 if(current_time >= last_time + 10)
 {
-
-	if(current_stamina < max_stamina)
+	
+	if(stamina_cooling)
 	{
-		current_stamina += stamina_regen_rate;
+		if(current_time >= stamina_cooldown_start + stamina_cooldown_time)
+		{
+			if(current_stamina < 10)
+			{
+				if(current_stamina < max_stamina)
+				{
+					current_stamina += stamina_regen_rate;
+				}
+			}
+			else
+			{
+				stamina_cooling = false;
+			}
+		}
 	}
+	else
+	{
+		if(current_stamina < max_stamina)
+		{
+			current_stamina += stamina_regen_rate;
+		}
+	}
+	
 	if(current_health < max_health)
 	{
 		current_health += health_regen_rate;
@@ -390,6 +502,8 @@ if(current_time >= last_time + 10)
 	last_time = current_time;
 }
 		
+
+
 
 //if(current_time > ability1CooldownCounter)
 //{
