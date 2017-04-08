@@ -14,11 +14,20 @@ player2 = false;
 abilityBarCreated = false;
 items = "array of items";
 
-moveSpeed = 3;
+moveSpeed = 5;
 attackSpeed = 7.5;
-jumpSpeed = 6.5;
+jumpSpeed = 7.5;
 grav = 0.25;
+dir = 0;
+turning = false;
+turning_time = 250;
+turning_last_time = current_time;
+hsp_save = 0;
 
+jump_started = false;
+jump_start_time = current_time;
+jump_short_time = 70;
+is_normal_jump = true;
 
 //health
 max_health = 100;

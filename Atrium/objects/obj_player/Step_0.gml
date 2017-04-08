@@ -2,15 +2,80 @@
 
 //Get player input
 if(!player2){
-key_right = keyboard_check(vk_right);
-key_left = keyboard_check(vk_left);
-key_jump = keyboard_check(vk_space);
-key_climb = keyboard_check(vk_up);
-key_climb_down = keyboard_check(vk_down);
-key_z = keyboard_check(ord("Z"));
-key_x = keyboard_check(ord("X"));
-key_c = keyboard_check(ord("C"));
+//key_right = keyboard_check(vk_right);
+//key_left = keyboard_check(vk_left);
+//key_jump = keyboard_check(vk_space);
+//key_climb = keyboard_check(vk_up);
+//key_climb_down = keyboard_check(vk_down);
+//key_z = keyboard_check(ord("Z"));
+//key_x = keyboard_check(ord("X"));
+//key_c = keyboard_check(ord("C"));
+
+
+//0 up dpad
+//1 down dpad
+//2 left dpad
+//3 right dpad
+//4 start button
+//5 select button
+//6 left analog press
+//7 right analog press
+
+//if(usingGamePad)
+//{
+	if(gamepad_axis_value(0, gp_axislh) > 0.3)
+	{
+		key_right = true;
+	}
+	else
+	{
+		key_right = false;
+	}
+	if(gamepad_axis_value(0, gp_axislh) < -0.3)
+	{
+		key_left = true;
+	}
+	else
+	{
+		key_left = false;
+	}
+	
+	if(gamepad_axis_value(0, gp_axislv) < -.5)
+	{
+		key_climb = true;
+	}
+	else
+	{
+		key_climb = false;
+	}
+	
+	if(gamepad_axis_value(0, gp_axislv) > .5)
+	{
+		key_down = true;
+	}
+	else
+	{
+		key_down = false;
+	}
+	
+	
+	
+	key_jump = gamepad_button_check(0, gp_face4);
+	key_jump_released = gamepad_button_check_released(0, gp_face4);
+	key_z = gamepad_button_check(0, gp_face1);
+	key_x = gamepad_button_check(0, gp_face3);
+	
+	if(gamepad_button_check(0, gp_shoulderr) || gamepad_button_check(0, gp_shoulderl) || gamepad_button_check(0, gp_shoulderrb) || gamepad_button_check(0, gp_shoulderlb))
+	{
+		key_c = true;
+	}
+	else
+	{
+		key_c = false;
+	}
+	
 }
+//}
 
 	
 xpos = x;
@@ -43,17 +108,126 @@ if(!abilityBarCreated)
 
 
 //React to input
+if(key_jump)
+{
+	if(!jump_started)
+	{
+		jump_started = true;
+		jump_start_time = current_time;
+	}
+	if(current_time > jump_start_time + jump_short_time && place_meeting(x,y+1,obj_wall) && jump_started)
+	{
+		//is_normal_jump = true;
+		vsp = -jumpSpeed;
+		jump_started = false;
+		y -= 8;
+	}
+}
+
+if(key_jump_released)
+{
+	
+	if(place_meeting(x,y+1,obj_wall) && current_time < jump_start_time + jump_short_time)
+	{
+		//is_normal_jump = false;
+		vsp = -jumpSpeed/1.5;
+		jump_started = false;
+		y -= 8;
+	}
+	else
+	{
+		jump_started = false;
+		
+	}
+	
+}
+
+
 move = key_left + key_right;
 if(key_left)
 {
 	move = -1;
+	
+	if(dir == 1)
+	{
+		
+		turning = true;
+		turning_last_time = current_time;
+		hsp_save = hsp;
+	}
+	dir = -1;
 }
 
 if(key_right)
 {
 	move = 1;
+	
+	if(dir == -1)
+	{
+		
+		turning = true;
+		turning_last_time = current_time;
+		hsp_save = hsp;
+	}
+	dir = 1;
 }
-hsp = move * moveSpeed;
+if(!place_meeting(x,y+1, obj_wall))
+{
+	if(hsp < (moveSpeed / 2) && move > 0)
+	{
+		hsp += move*.1;
+	}
+	
+	if(hsp > -(moveSpeed / 2) && move < 0)
+	{
+		hsp += move*.1;
+	}
+	
+	if(vsp < 1 && vsp > -1 && key_down)
+	{
+		vsp = 10;
+	}
+	
+}
+else
+{
+	if(move != 0)
+	{
+		if(hsp < moveSpeed && move > 0)
+		{
+			hsp += move*.4;
+		}if(hsp > -moveSpeed && move < 0)
+		{
+			hsp += move*.4;
+		}
+	}
+	else
+	{
+		if(abs(hsp) > .7 && !turning)
+		{
+			hsp -= sign(hsp)*.6;
+		}
+		else if(turning)
+		{
+			if(current_time > turning_time + turning_last_time)
+			{
+				turning = false;
+				
+			}
+			if(key_jump)
+			{
+				hsp = hsp_save;
+			}
+		}
+		else
+		{
+			hsp = 0;
+		}
+	}
+	
+}
+
+
 
 if(vsp < 30)
 {
@@ -62,9 +236,9 @@ if(vsp < 30)
 
 
 //Horizontal Collison
-if(place_meeting(x+hsp+(sign(hsp)*2),y,obj_wall))
+if(place_meeting(x+hsp+(sign(hsp)*2),y-1,obj_wall))
 {
-	while(!place_meeting(x+sign(hsp),y,obj_wall))
+	while(!place_meeting(x+sign(hsp),y-1,obj_wall))
 	{
 		x +=sign(hsp)/2;
 	}
@@ -96,7 +270,7 @@ switch (state)
 	if(key_jump && !place_meeting(x,y-10,obj_wall) && place_meeting(x,y+1,obj_wall)){
 		
 		state = "jump"
-		sprite_index = jumpingSprite;
+		//sprite_index = jumpingSprite;
 	}
 	else if(key_z && !ability1OnCooldown && !stamina_cooling)
 	{
@@ -127,21 +301,23 @@ switch (state)
 		if(place_meeting(x,y+1,obj_wall))
 		{
 			sprite_index = moveSprite;
-			sprite_set_speed(moveSprite,12,0)
+			sprite_set_speed(moveSprite,12,0);
+			image_xscale = 1;
 		}
-		image_xscale = 1;
+		
 	}
 	else if(key_left)
 	{
 		if(place_meeting(x,y+1,obj_wall))
 		{
 			sprite_index = moveSprite;
-			sprite_set_speed(moveSprite,12,0)
+			sprite_set_speed(moveSprite,12,0);
+			image_xscale = -1;
 		}
-		image_xscale = -1;
+		
 	}
 	
-	else if((key_climb || key_climb_down) && place_meeting(x,y+1,obj_ladder_air))
+	else if((key_climb || key_down) && place_meeting(x,y+1,obj_ladder_air))
 	{
 		state = "climb";
 	}
@@ -172,7 +348,7 @@ switch (state)
 				state = "ground";
 			}
 		}
-		else if(key_climb_down)
+		else if(key_down)
 		{
 			if(place_meeting(x,y+1,obj_ladder_air))
 			{
@@ -420,8 +596,8 @@ switch (state)
 			
 			if(place_meeting(x,y+1,obj_wall))
 			{
-				y -= 1;
-				vsp = key_jump * -jumpSpeed;	
+				//y -= 4;
+				//vsp = -jumpSpeed;
 			}else{
 				state = "ground";
 			}
